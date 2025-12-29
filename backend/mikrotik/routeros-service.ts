@@ -10,7 +10,8 @@ import type {
   WanStatus,
   LteStatus,
   SmsMessage,
-} from '@/app/types/mikrotik';
+  DashboardData,
+} from './types';
 import {
   MOCK_ACTIVE_CONNECTIONS,
   MOCK_BACKUPS,
@@ -23,8 +24,7 @@ import {
   MOCK_WAN_STATUS,
   MOCK_LTE_STATUS,
   MOCK_SMS_MESSAGES,
-} from '@/constants/mikrotik';
-import type { DashboardData } from '@/app/services/mikrotik';
+} from './mocks';
 
 const toBool = (v: string | undefined): boolean => {
   if (!v) return false;
