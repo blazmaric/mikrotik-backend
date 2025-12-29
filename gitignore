@@ -1,0 +1,44 @@
+# Frontend/App files - ignore everything related to mobile app
+app/
+utils/trpc.ts
+utils/trpc-client.ts
+app.json
+tsconfig.json
+
+# Dependencies
+node_modules/
+.expo/
+.expo-shared/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+.cache/
