@@ -1,0 +1,28 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: mikrotik-nginx
+    restart: unless-stopped
+    depends_on:
+      - mikrotik-backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+
+  mikrotik-backend:
+    build: .
+    container_name: mikrotik-backend
+    restart: unless-stopped
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    environment:
+      PORT: "3000"
+      MIKROTIK_HOST: "${MIKROTIK_HOST}"
+      MIKROTIK_PORT: "${MIKROTIK_PORT:-8729}"
+      MIKROTIK_USER: "${MIKROTIK_USER}"
+      MIKROTIK_PASSWORD: "${MIKROTIK_PASSWORD}"
+      MIKROTIK_TLS_INSECURE: "${MIKROTIK_TLS_INSECURE:-true}"
+      MIKROTIK_TLS_CA_PEM: "${MIKROTIK_TLS_CA_PEM:-}"
