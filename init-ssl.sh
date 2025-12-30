@@ -12,8 +12,12 @@ docker compose run --rm certbot certonly --webroot \
   --no-eff-email \
   -d api.m-host.si
 
-# Reload nginx
-docker compose exec nginx nginx -s reload
+# Reload nginx (if running)
+if docker compose ps nginx | grep -q 'Up'; then
+  docker compose exec nginx nginx -s reload
+else
+  echo "Nginx is not running yet, skipping reload"
+fi
 
 echo "SSL certificate obtained successfully!"
 echo "Now restart the containers: docker compose down && docker compose up -d"
