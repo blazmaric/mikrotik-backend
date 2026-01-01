@@ -9,6 +9,13 @@ fi
 DOMAIN=$1
 echo "Obtaining SSL certificate for: $DOMAIN"
 
+# Check if nginx is running
+if ! docker compose ps nginx | grep -q 'Up'; then
+  echo "ERROR: nginx is not running!"
+  echo "Please start nginx first with: docker compose up -d nginx"
+  exit 1
+fi
+
 # Create directories for certbot
 mkdir -p certbot/conf
 mkdir -p certbot/www
